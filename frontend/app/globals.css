@@ -1,0 +1,37 @@
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/instrument-sans";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+.dark { color-scheme: dark; }
+
+html { scroll-behavior: smooth; }
+body { @apply bg-mist font-sans text-slate-800 antialiased dark:bg-ink dark:text-slate-200; }
+h1, h2, h3 { @apply font-display text-slate-900 dark:text-white; }
+a { @apply underline-offset-4; }
+:focus-visible { @apply outline-none ring-2 ring-brand ring-offset-2 ring-offset-white dark:ring-offset-ink; }
+
+@layer components {
+  .card { @apply rounded-2xl border border-slate-200/80 bg-white p-5 shadow-[0_1px_2px_rgba(11,18,32,.04),0_8px_24px_-12px_rgba(11,18,32,.08)] dark:border-white/10 dark:bg-slate-900/70; }
+  .card-hover { @apply transition duration-200 hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-[0_12px_32px_-12px_rgba(79,70,229,.25)]; }
+  .btn { @apply relative inline-flex min-h-[40px] select-none items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-brand to-indigo-500 bg-[length:200%_100%] px-4 py-2 text-sm font-semibold text-white no-underline shadow-[0_6px_18px_-6px_rgba(79,70,229,.55)] transition duration-200 hover:-translate-y-px hover:bg-[position:100%_0] hover:shadow-[0_10px_26px_-6px_rgba(79,70,229,.65)] active:translate-y-0 active:scale-[.98] disabled:pointer-events-none disabled:opacity-50; }
+  .btn-secondary { @apply inline-flex min-h-[40px] select-none items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white/60 px-4 py-2 text-sm font-semibold text-slate-800 no-underline transition duration-200 hover:-translate-y-px hover:border-brand/50 hover:bg-white active:translate-y-0 active:scale-[.98] disabled:pointer-events-none disabled:opacity-50 dark:border-white/15 dark:bg-white/5 dark:text-slate-100 dark:hover:bg-white/10; }
+  .btn-danger { @apply inline-flex min-h-[40px] items-center justify-center gap-2 rounded-xl border border-red-300 px-4 py-2 text-sm font-semibold text-red-700 transition hover:bg-red-50 active:scale-[.98] disabled:opacity-50 dark:border-red-800 dark:text-red-400 dark:hover:bg-red-950; }
+  .btn-ghost { @apply inline-flex min-h-[40px] items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-slate-600 no-underline transition hover:bg-slate-100 active:scale-[.98] dark:text-slate-300 dark:hover:bg-white/10; }
+  .input { @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-brand focus:ring-2 focus:ring-brand/30 dark:border-white/15 dark:bg-slate-950 dark:text-slate-100; }
+  .label { @apply mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300; }
+  .muted { @apply text-sm text-slate-500 dark:text-slate-400; }
+  .badge { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium; }
+  .skeleton { @apply relative overflow-hidden rounded-xl bg-slate-200/70 dark:bg-white/10; }
+  .skeleton::after { content: ""; @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/50 to-transparent dark:via-white/10; animation: shimmer 1.4s infinite; }
+  .container-x { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
+}
+
+.trace { stroke-dasharray: 1400; stroke-dashoffset: 1400; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  .trace { stroke-dashoffset: 0; }
+}

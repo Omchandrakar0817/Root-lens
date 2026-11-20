@@ -1,0 +1,105 @@
+from __future__ import annotations
+
+SCENARIOS = {
+    "cpu_spike": {
+        "title": "Synthetic CPU spike",
+        "category": "resource",
+        "is_up": True,
+        "http_status": 200,
+        "response_time_ms": 900,
+        "baseline_ms": 180,
+        "dns_ok": True,
+        "agent": {"cpu_percent": 97, "memory_percent": 42, "disk_percent": 50},
+        "symptoms": ["Synthetic CPU usage reached 97 percent."],
+        "series": [180, 190, 170, 200, 185, 176, 900],
+        "metric": "response_time_ms",
+    },
+    "memory_leak": {
+        "title": "Synthetic memory growth",
+        "category": "resource",
+        "is_up": True,
+        "http_status": 200,
+        "response_time_ms": 700,
+        "baseline_ms": 200,
+        "agent": {"cpu_percent": 40, "memory_percent": 96, "disk_percent": 61},
+        "symptoms": ["Synthetic memory usage climbed to 96 percent."],
+        "series": [40, 48, 55, 63, 74, 88, 96],
+        "metric": "memory_percent",
+    },
+    "database_connection_failure": {
+        "title": "Synthetic database connection symptom",
+        "category": "http_error",
+        "is_up": False,
+        "http_status": 500,
+        "response_time_ms": 1200,
+        "baseline_ms": 210,
+        "error_type": "http_5xx",
+        "error_message": "Synthetic HTTP 500. The simulator does not know a real database state.",
+        "symptoms": ["Synthetic repeated HTTP 500."],
+        "series": [200, 210, 190, 205, 220, 215, 1200],
+    },
+    "traffic_surge": {
+        "title": "Synthetic traffic surge",
+        "category": "latency",
+        "is_up": True,
+        "http_status": 200,
+        "response_time_ms": 3500,
+        "baseline_ms": 250,
+        "symptoms": ["Synthetic response time rose well above the baseline."],
+        "series": [220, 240, 230, 260, 250, 245, 3500],
+    },
+    "api_latency": {
+        "title": "Synthetic API latency increase",
+        "category": "latency",
+        "is_up": True,
+        "http_status": 200,
+        "response_time_ms": 2800,
+        "baseline_ms": 300,
+        "symptoms": ["Synthetic API latency increased."],
+        "series": [280, 300, 290, 310, 305, 295, 2800],
+    },
+    "http_error_spike": {
+        "title": "Synthetic HTTP error spike",
+        "category": "http_error",
+        "is_up": False,
+        "http_status": 503,
+        "response_time_ms": 800,
+        "error_type": "http_5xx",
+        "error_message": "Synthetic HTTP 503",
+        "symptoms": ["Synthetic HTTP 503 responses."],
+        "series": [180, 190, 175, 185, 800],
+    },
+    "network_failure": {
+        "title": "Synthetic network failure",
+        "category": "availability",
+        "is_up": False,
+        "http_status": None,
+        "error_type": "connection",
+        "error_message": "Synthetic connection failure",
+        "dns_ok": True,
+        "symptoms": ["Synthetic connection failed after DNS succeeded."],
+    },
+    "website_downtime": {
+        "title": "Synthetic website downtime",
+        "category": "availability",
+        "is_up": False,
+        "http_status": None,
+        "error_type": "connection",
+        "error_message": "Synthetic downtime",
+        "dns_ok": True,
+        "symptoms": ["Synthetic downtime scenario."],
+    },
+}
+
+
+def scenario_catalog() -> list[dict]:
+    return [
+        {
+            "id": key,
+            "title": value["title"],
+            "category": value["category"],
+            "label": "synthetic",
+            "description": "Educational synthetic data. This does not contact or load a real website.",
+        }
+        for key, value in SCENARIOS.items()
+    ]

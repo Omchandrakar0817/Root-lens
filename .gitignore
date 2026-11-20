@@ -1,0 +1,75 @@
+
+# ==========================================
+# RootLens - Git Ignore
+# ==========================================
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python build and testing
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+
+# Node.js / Next.js
+node_modules/
+.next/
+out/
+dist/
+build/
+.vercel/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Celery generated runtime files
+celerybeat-schedule*
+celerybeat.pid
+celeryd.pid
+
+# Local database files
+*.sqlite
+*.sqlite3
+*.db
+
+# ML generated model artifacts
+backend/models_store/
+
+# Local agent configuration
+agent/agent.yaml
+
+# IDE and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary files and archives
+*.zip
+*.tmp
+*.bak
+*.swp
